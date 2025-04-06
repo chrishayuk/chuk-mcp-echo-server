@@ -1,11 +1,11 @@
 # chuk_mcp_echo_server/tools.py
 from pydantic import ValidationError
-from mcp.shared.exceptions import McpError
+from mcp.shared.exceptions import McpError  # Adjust if needed for your project
 
-# common imports
-from chuk_mcp_echo_server.common.mcp_tool_decorator import mcp_tool
+# Import the runtime's tool decorator
+from chuk_mcp_runtime.common.mcp_tool_decorator import mcp_tool
 
-# project imports – using absolute imports to reference the echo server models
+# Project imports – using absolute imports to reference the echo server models
 from chuk_mcp_echo_server.models import EchoInput, EchoResult
 
 @mcp_tool(name="echo", description="Echo back the input message")
@@ -21,3 +21,4 @@ def echo(message: str) -> dict:
     # Build the result by simply echoing the message back.
     result = EchoResult(message=validated_input.message)
     return result.model_dump()
+
